@@ -36,7 +36,8 @@
     ui = true
 [core]
     whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
-	edito = emacs
+    editor = emacs
+    excludesfile = ~/.gitignore_global
 [merge]
 	tool = vimdiff
 [push]

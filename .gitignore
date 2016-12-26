@@ -1,0 +1,6 @@
+*
+**/*
+!.emacs
+!.gitconfig
+!.gitignore_global
+!.gitignore
