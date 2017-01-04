@@ -4,3 +4,4 @@
 !.gitconfig
 !.gitignore_global
 !.gitignore
+!.ssh/config
