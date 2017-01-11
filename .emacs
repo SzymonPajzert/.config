@@ -23,8 +23,18 @@
 (use-package projectile
   :ensure t)
 
+;; org-mode browser
+(setq browse-url-browser-function 'browse-url-generic
+	  browse-url-generic-program "chromium-browser")
+
+;; org-mode configuration
 (setq org-todo-keywords
-'((sequence "TODO" "GOOGLE" "CHECK" "|" "DONE" "FUTURE")))
+'((sequence "TODO" "CHECK" "LEARN" "|" "DONE" "FUTURE")))
+
+(setq org-agenda-files
+ (cons "~/Documents/org" nil))
+
+(setq org-log-done 'time)
 
 (add-to-list 'load-path "~/.emacs.d/neotree")
 (require 'neotree)
