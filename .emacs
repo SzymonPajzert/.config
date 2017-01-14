@@ -23,18 +23,33 @@
 (use-package projectile
   :ensure t)
 
+;; org-mode keys
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-cb" 'org-iswitchb)
+(global-set-key "\C-c\C-x\C-o" 'org-clock-out)
+
 ;; org-mode browser
 (setq browse-url-browser-function 'browse-url-generic
 	  browse-url-generic-program "chromium-browser")
 
+;; http://stackoverflow.com/questions/8812520/defining-unscheduled-todos-as-stuck-projects-in-emacs-org-mode
+(setq org-stuck-projects
+	  '("TODO={.+}/-DONE-SOMEDAY" nil nil "SCHEDULED:\\|DEADLINE:"))
+
 ;; org-mode configuration
 (setq org-todo-keywords
-'((sequence "TODO" "CHECK" "LEARN" "|" "DONE" "FUTURE")))
+'((sequence "TODO" "CHECK" "LEARN" "|" "DONE" "SOMEDAY")))
 
 (setq org-agenda-files
  (cons "~/Documents/org" nil))
 
 (setq org-log-done 'time)
+
+;; http://stackoverflow.com/questions/151945/how-do-i-control-how-emacs-makes-backup-files
+(setq backup-directory-alist `(("." . "~/.saves")))
+(setq backup-by-copying t)
 
 (add-to-list 'load-path "~/.emacs.d/neotree")
 (require 'neotree)
