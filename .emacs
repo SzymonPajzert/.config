@@ -36,14 +36,14 @@
 
 ;; http://stackoverflow.com/questions/8812520/defining-unscheduled-todos-as-stuck-projects-in-emacs-org-mode
 (setq org-stuck-projects
-	  '("TODO={.+}/-DONE-SOMEDAY" nil nil "SCHEDULED:\\|DEADLINE:"))
+	  '("TODO={.+}/-DONE-SOMEDAY-FAILED" nil nil "SCHEDULED:\\|DEADLINE:"))
 
 ;; org-mode configuration
 (setq org-todo-keywords
-'((sequence "TODO" "CHECK" "LEARN" "|" "DONE" "SOMEDAY")))
+'((sequence "TODO" "CHECK" "LEARN" "|" "DONE" "SOMEDAY" "FAILED")))
 
 (setq org-agenda-files
- (cons "~/Documents/org" nil))
+ '("~/Documents/org" "~/Documents/org/studia"))
 
 (setq org-log-done 'time)
 
