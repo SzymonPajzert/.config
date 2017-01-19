@@ -23,6 +23,14 @@
 (use-package projectile
   :ensure t)
 
+;; org-mode customization
+(setq org-agenda-time-grid '((daily weekly require-timed)
+                            "--------------------"
+							(800 1000 1200 1400 1600 1800 2000 2200)))
+
+(setq org-agenda-skip-deadline-if-done t)
+(setq org-agenda-skip-scheduled-if-done t)
+
 ;; org-mode keys
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-ca" 'org-agenda)
