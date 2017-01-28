@@ -18,10 +18,12 @@
   :ensure t
   :config
   ;; your preferred main font face here
-  (set-frame-font "Inconsolata-14"))
+  (set-frame-font "Inconsolata-12"))
 
 (use-package projectile
   :ensure t)
+
+;; 
 
 ;; org-mode customization
 (setq org-agenda-time-grid '((daily weekly require-timed)
@@ -44,11 +46,11 @@
 
 ;; http://stackoverflow.com/questions/8812520/defining-unscheduled-todos-as-stuck-projects-in-emacs-org-mode
 (setq org-stuck-projects
-	  '("TODO={.+}/-DONE-SOMEDAY-FAILED" nil nil "SCHEDULED:\\|DEADLINE:"))
+	  '("TODO={.+}/-DONE-SOMEDAY-FAILED-CANCELLED" nil nil "SCHEDULED:\\|DEADLINE:"))
 
 ;; org-mode configuration
 (setq org-todo-keywords
-'((sequence "TODO" "CHECK" "LEARN" "|" "DONE" "SOMEDAY" "FAILED")))
+'((sequence "TODO" "CHECK" "LEARN" "|" "DONE" "SOMEDAY" "FAILED" "CANCELLED")))
 
 (setq org-agenda-files
  '("~/Documents/org" "~/Documents/org/studia"))
