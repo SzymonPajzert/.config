@@ -23,8 +23,6 @@
 (use-package projectile
   :ensure t)
 
-;; 
-
 ;; org-mode customization
 (setq org-agenda-time-grid '((daily weekly require-timed)
                             "--------------------"
@@ -56,6 +54,11 @@
  '("~/Documents/org" "~/Documents/org/studia"))
 
 (setq org-log-done 'time)
+
+;; Org habits
+(defun my-after-load-org ()
+  (add-to-list 'org-modules 'org-habit))
+(eval-after-load "org" '(my-after-load-org))
 
 ;; http://stackoverflow.com/questions/151945/how-do-i-control-how-emacs-makes-backup-files
 (setq backup-directory-alist `(("." . "~/.saves")))
