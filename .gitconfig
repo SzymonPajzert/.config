@@ -45,3 +45,5 @@
 [user]
 	email = szymonpajzert@gmail.com
 	name = Szymon Pajzert
+[diff]
+	algorithm = patience

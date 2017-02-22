@@ -1,9 +1,15 @@
 
 (require 'package)
-(setq package-enable-at-startup nil)
-(add-to-list 'package-archives
-	     '("melpa" . "https://melpa.org/packages/"))
+;; turn on if efficiency drops
+;; (setq package-enable-at-startup nil)
+(setq
+ package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                    ("org" . "http://orgmode.org/elpa/")
+                    ("melpa" . "http://melpa.org/packages/")
+                    ("melpa-stable" . "http://stable.melpa.org/packages/"))
+ package-archive-priorities '(("melpa-stable" . 1)))
 
+			 
 (package-initialize)
 
 ;; Bootstrap `use-package'
@@ -15,6 +21,10 @@
 	      tab-width 4
 	      indent-tabs-mode t)
 
+(use-package ensime
+  :ensure t
+  :pin melpa-stable)
+
 (use-package darcula-theme
   :ensure t
   :config
@@ -23,6 +33,24 @@
 
 (use-package projectile
   :ensure t)
+
+;; Tuareg mode
+(load "/home/svp/.opam/system/share/emacs/site-lisp/tuareg-site-file")
+
+;; Merlin - tuareg
+(let ((opam-share (ignore-errors (car (process-lines "opam" "config" "var" "share")))))
+      (when (and opam-share (file-directory-p opam-share))
+       ;; Register Merlin
+       (add-to-list 'load-path (expand-file-name "emacs/site-lisp" opam-share))
+       (autoload 'merlin-mode "merlin" nil t nil)
+       ;; Automatically start it in OCaml buffers
+       (add-hook 'tuareg-mode-hook 'merlin-mode t)
+       (add-hook 'caml-mode-hook 'merlin-mode t)
+       ;; Use opam switch to lookup ocamlmerlin binary
+       (setq merlin-command 'opam)))
+
+;; caml-mode
+(add-to-list 'load-path "/home/svp/.opam/system/share/emacs/site-lisp/")
 
 ;; org-mode customization
 (setq org-agenda-time-grid '((daily weekly require-timed)
@@ -46,11 +74,11 @@
 
 ;; http://stackoverflow.com/questions/8812520/defining-unscheduled-todos-as-stuck-projects-in-emacs-org-mode
 (setq org-stuck-projects
-	  '("TODO={.+}/-DONE-SOMEDAY-FAILED-CANCELLED" nil nil "SCHEDULED:\\|DEADLINE:"))
+	  '("TODO={.+}/-DONE-SOMEDAY-FAILED-CANCELLED" nil ("book") "SCHEDULED:\\|DEADLINE:"))
 
 ;; org-mode configuration
 (setq org-todo-keywords
-'((sequence "TODO(t)" "CHECK(c)" "LEARN(l)" "|" "DONE(d)" "SOMEDAY(s)" "FAILED(f)" "ABORTED(a)")))
+'((sequence "TODO(t)" "|" "DONE(d)" "AWAITING(a)" "FAILED(f)" "CANCELLED(c)" "SOMEDAY(s)")))
 
 (setq org-agenda-files
  '("~/Documents/org" "~/Documents/org/studia"))
@@ -79,33 +107,10 @@
 (setq backup-directory-alist `(("." . "~/.saves")))
 (setq backup-by-copying t)
 
-(add-to-list 'load-path "~/.emacs.d/neotree")
+(use-package neotree
+  :ensure t)
 (require 'neotree)
 (global-set-key [f8] 'neotree-toggle)
-
-;; http://joelmccracken.github.io/entries/emacs-hack-set-todo-done-yesterday/
-
-(defun org-todo-toggle-yesterday ()
-  ;; this function is interactive, meaning a "command" that we call
-  ;; as an emacs user (allows us to do "M-x org-todo-toggle-yesterday")
-  (interactive)
-
-  (let ((time-in-question (decode-time))) 
-    ;; time-in-question is the current time, decoded into convenient fields
-
-    ;; decrease the field by one which represents the day -- make it "yesterday"
-    (setq (nth 3 time-in-question) (nth 3 time-in-question) - 1)
-
-    ;; now, re-encode that time
-    (setq time-in-question (apply 'encode-time time-in-question))
-
-    (flet ((current-time () time-in-question))
-      ;; flet temporarily binds current-time to this version, which
-      ;; returns the time from yesterday 
-
-      (org-todo)
-      ;; toggles the todo heading
-      )))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
