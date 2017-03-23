@@ -1,4 +1,3 @@
-
 (require 'package)
 ;; turn on if efficiency drops
 ;; (setq package-enable-at-startup nil)
@@ -20,6 +19,10 @@
 (setq-default c-basic-offset 4
 	      tab-width 4
 	      indent-tabs-mode t)
+
+(add-to-list 'load-path "~/.emacs.d/dockerfile-mode/")
+(require 'dockerfile-mode)
+(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 
 (use-package ensime
   :ensure t
