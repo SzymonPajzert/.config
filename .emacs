@@ -45,7 +45,7 @@
 (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
 
 ;; Tuareg mode
-(load "/home/svp/.opam/system/share/emacs/site-lisp/tuareg-site-file")
+(load "/home/svp/.opam/system/share/emacs/site-lisp/tuareg-site-file.el")
 
 ;; Merlin - tuareg
 (let ((opam-share (ignore-errors (car (process-lines "opam" "config" "var" "share")))))
@@ -61,6 +61,8 @@
 
 ;; caml-mode
 (add-to-list 'load-path "/home/svp/.opam/system/share/emacs/site-lisp/")
+
+(setq calendar-week-start-day 1)
 
 ;; org-mode customization
 (setq org-agenda-time-grid '((daily weekly require-timed)
@@ -80,7 +82,7 @@
 
 ;; org-mode browser
 (setq browse-url-browser-function 'browse-url-generic
-	  browse-url-generic-program "chromium-browser")
+	  browse-url-generic-program "google-chrome-stable")
 
 ;; http://stackoverflow.com/questions/8812520/defining-unscheduled-todos-as-stuck-projects-in-emacs-org-mode
 (setq org-stuck-projects
@@ -110,7 +112,8 @@
 
 ;; Org habits
 (defun my-after-load-org ()
-  (add-to-list 'org-modules 'org-habit))
+  (add-to-list 'org-modules 'org-habit)
+  (add-to-list 'org-modules 'org-id))
 (eval-after-load "org" '(my-after-load-org))
 
 ;; http://stackoverflow.com/questions/151945/how-do-i-control-how-emacs-makes-backup-files
