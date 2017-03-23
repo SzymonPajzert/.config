@@ -37,6 +37,13 @@
 (use-package projectile
   :ensure t)
 
+(use-package haskell-mode
+  :ensure t)
+
+(require 'haskell-interactive-mode)
+(require 'haskell-process)
+(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+
 ;; Tuareg mode
 (load "/home/svp/.opam/system/share/emacs/site-lisp/tuareg-site-file")
 
