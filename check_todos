@@ -1,1 +1,9 @@
-grep -I -R -E "([^*] |[^*][^ ]|*[^ ])TODO" .
+find . \
+	\( -name .opam -prune \) -o \
+	\( -name elpa -prune \) -o \
+	\( -name google-chrome -prune \) -o \
+	\( -name .ivy2 -prune \) -o \
+	\( -name screenkey -prune \) -o \
+	\( -name org -prune \) -o \
+	\( -name sbt -prune \) -o \
+	-type f -exec grep -I -l -E "TODO" {} \;
