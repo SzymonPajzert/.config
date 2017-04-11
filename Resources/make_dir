@@ -1,0 +1,20 @@
+#!/bin/bash
+
+NAME=$1
+FILE=$2
+
+
+>&2 echo "LOG: Creating for \"$NAME\""
+HASHDIR=`echo -n $NAME | md5sum`
+BDIR=${HASHDIR::-2}
+
+>&2 echo "LOG: Creating $BDIR"
+mkdir $BDIR 2>/dev/null
+if [[ $? -eq 1 ]]; then
+	>&2 echo "WARNING: Directory already exists"
+else
+	>&2 echo "LOG: Created successfully"
+fi
+
+cd $BDIR
+cp 

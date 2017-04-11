@@ -6,3 +6,5 @@
 !.gitignore
 !.ssh/config
 !check_todos
+!Resources/
+!Resources/make_dir
