@@ -86,11 +86,11 @@
 
 ;; http://stackoverflow.com/questions/8812520/defining-unscheduled-todos-as-stuck-projects-in-emacs-org-mode
 (setq org-stuck-projects
-	  '("TODO={.+}/-DONE-SOMEDAY-FREE-FAILED-CANCELLED" nil ("book") "SCHEDULED:\\|DEADLINE:"))
+	  '("TODO={.+}/-DONE-SOMEDAY-FREE-FAILED-CANCELLED-COLLECT" nil ("book") "SCHEDULED:\\|DEADLINE:"))
 
 ;; org-mode configuration
 (setq org-todo-keywords
-'((sequence "FREE(f)" "TODO(t)" "|" "DONE(d)" "AWAITING(a)" "FAILED(f)" "CANCELLED(c)" "SOMEDAY(s)")))
+'((sequence "TODO(t)" "FREE(f)" "|" "DONE(d)" "AWAITING(a)" "FAILED(l)" "CANCELLED(c)" "SOMEDAY(s)")))
 
 (setq org-agenda-files
  '("~/Documents/org" "~/Documents/org/studia"))
