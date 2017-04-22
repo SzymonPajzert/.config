@@ -24,6 +24,21 @@
 (require 'dockerfile-mode)
 (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 
+;; Adopted from https://github.com/chrisdone/structured-haskell-mode
+(add-to-list 'load-path "~/.emacs.d/structured-haskell-mode/elisp")
+(require 'shm)
+(add-hook 'haskell-mode-hook 'structured-haskell-mode)
+
+(set-face-background 'shm-current-face "#eee8d5")
+(set-face-background 'shm-quarantine-face "lemonchiffon")
+
+;; Adopted from https://github.com/haskell/haskell-mode/issues/90
+; Haskell {{{
+; adopted from http://sequence.complete.org/node/365
+(load-library "haskell-site-file")
+(add-to-list 'auto-mode-alist '("\\.hs\\'" . haskell-mode))
+(remove-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+
 (use-package ensime
   :ensure t
   :pin melpa-stable)

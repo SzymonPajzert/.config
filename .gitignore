@@ -6,5 +6,6 @@
 !.gitignore
 !.ssh/config
 !check_todos
+!install-structured-haskell-mode.sh
 !Resources/
 !Resources/make_dir
