@@ -9,3 +9,8 @@
 !install-structured-haskell-mode.sh
 !Resources/
 !Resources/make_dir
+
+!.local/
+!.local/share/
+!.local/share/applications/
+!.local/share/applications/org-protocol.desktop
