@@ -24,40 +24,24 @@
 (require 'dockerfile-mode)
 (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 
-;; Adopted from https://github.com/chrisdone/structured-haskell-mode
-(add-to-list 'load-path "~/.emacs.d/structured-haskell-mode/elisp")
-(require 'shm)
-(add-hook 'haskell-mode-hook 'structured-haskell-mode)
+(use-package ensime :ensure t :pin melpa-stable)
 
-(set-face-background 'shm-current-face "#eee8d5")
-(set-face-background 'shm-quarantine-face "lemonchiffon")
-
-;; Adopted from https://github.com/haskell/haskell-mode/issues/90
-; Haskell {{{
-; adopted from http://sequence.complete.org/node/365
-(load-library "haskell-site-file")
-(add-to-list 'auto-mode-alist '("\\.hs\\'" . haskell-mode))
-(remove-hook 'haskell-mode-hook 'turn-on-haskell-indent)
-
-(use-package ensime
-  :ensure t
-  :pin melpa-stable)
-
-(use-package darcula-theme
-  :ensure t
-  :config
+(use-package darcula-theme :ensure t :config
   ;; your preferred main font face here
   (set-frame-font "Inconsolata-12"))
 
-(use-package projectile
-  :ensure t)
+(use-package projectile :ensure t)
 
-(use-package haskell-mode
-  :ensure t)
+(use-package haskell-mode :ensure t)
+
+; (use-package auctex :ensure t)
 
 (require 'haskell-interactive-mode)
 (require 'haskell-process)
 (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+
+(use-package hindent :ensure t)
+(add-hook 'haskell-mode-hook #'hindent-mode)
 
 ;; Tuareg mode
 (load "/home/svp/.opam/system/share/emacs/site-lisp/tuareg-site-file.el")
@@ -97,7 +81,7 @@
 
 ;; org-mode browser
 (setq browse-url-browser-function 'browse-url-generic
-	  browse-url-generic-program "google-chrome-stable")
+	  browse-url-generic-program "google-chrome")
 
 ;; http://stackoverflow.com/questions/8812520/defining-unscheduled-todos-as-stuck-projects-in-emacs-org-mode
 (setq org-stuck-projects
@@ -111,6 +95,7 @@
  '("~/Documents/org" "~/Documents/org/studia"))
 
 (setq org-log-done 'time)
+(setq org-deadline-warning-days 28)
 
 ;; org-mode capture
 
@@ -135,10 +120,26 @@
 (setq backup-directory-alist `(("." . "~/.saves")))
 (setq backup-by-copying t)
 
-(use-package neotree
-  :ensure t)
+(use-package neotree :ensure t)
 (require 'neotree)
 (global-set-key [f8] 'neotree-toggle)
+
+;; TODO
+(add-to-list 'load-path "~/.emacs.d/all-the-icons/")
+(require 'all-the-icons)
+;; (use-package all-the-icons :ensure t)
+(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+
+;; Auto refresh all the buffers
+;; Adapted from http://stackoverflow.com/questions/1480572/how-to-have-emacs-auto-refresh-all-buffers-when-files-have-changed-on-disk
+(global-auto-revert-mode t)
+
+(setq TeX-auto-save t)
+(setq TeX-parse-self t)
+(setq-default TeX-master nil)
+(add-hook 'LaTeX-mode-hook 'visual-line-mode)
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -146,7 +147,14 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(c-default-style (quote ((c-mode . "") (awk-mode . "awk") (other . "gnu"))))
+ '(neo-autorefresh nil)
+ '(neo-hidden-regexp-list
+   (quote
+	("^\\." "\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.hi$" "\\.o$")))
  '(neo-window-fixed-size nil)
+ '(package-selected-packages
+   (quote
+	(all-the-icons org request hindent auctex use-package projectile neotree haskell-mode ensime darcula-theme)))
  '(warning-minimum-level :debug))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
