@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+file=$1
+git_root="$(git rev-parse --show-toplevel)"
+abs_dir="$(pwd)"//$file
+
+if [[ $? -ne 0 ]]; then
+	echo "There's no git root directory"
+fi 
+
+abs_dir="$(realpath $abs_dir)"
+rel_dir="${abs_dir#$git_root/}"
+
+echo "Trying to unignore $abs_dir (rel: ${rel_dir})"
+
+sub_paths=()
+while [[ (! -z "$rel_dir") && ("$rel_dir" != ".") ]]; do 
+	echo "${rel_dir}"
+	sub_paths+=("$rel_dir")
+	rel_dir="$(dirname $rel_dir)"
+done
+
+gitignore=${git_root}/.gitignore
+
+for path in ${sub_paths[@]}; do
+	echo "!"$path >> ${gitignore}
+done
+
+git add ${rel_dir}

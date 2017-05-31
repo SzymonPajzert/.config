@@ -9,3 +9,7 @@
 !install-structured-haskell-mode.sh
 !Resources/
 !Resources/make_dir
+!.local/bin/git_unignore
+!.local/bin
+!.local
+!.local/bin/send_key
