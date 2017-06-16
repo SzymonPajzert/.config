@@ -13,3 +13,6 @@
 !.local/bin
 !.local
 !.local/bin/send_key
+!.emacs.d/swipl/prolog.el
+!.emacs.d/swipl
+!.emacs.d
