@@ -24,8 +24,6 @@
 (require 'dockerfile-mode)
 (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 
-(use-package ensime :ensure t :pin melpa-stable)
-
 (use-package darcula-theme :ensure t :config
   ;; your preferred main font face here
   (set-frame-font "Inconsolata-12"))
@@ -34,7 +32,7 @@
 
 (use-package haskell-mode :ensure t)
 
-; (use-package auctex :ensure t)
+;; (use-package auctex :ensure t)
 
 (require 'haskell-interactive-mode)
 (require 'haskell-process)
@@ -140,6 +138,12 @@
 (add-hook 'LaTeX-mode-hook 'visual-line-mode)
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
 (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+
+(load "~/.emacs.d/swipl/prolog.el")
+(autoload 'prolog-mode "prolog" "Major mode for editing Prolog programs." t)
+(add-to-list 'auto-mode-alist '("\\.pl\\'" . prolog-mode))
+
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
