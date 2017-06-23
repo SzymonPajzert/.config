@@ -20,13 +20,15 @@
 	      tab-width 4
 	      indent-tabs-mode t)
 
-(add-to-list 'load-path "~/.emacs.d/dockerfile-mode/")
-(require 'dockerfile-mode)
-(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
+;; TODO add to dependencies
+;; (add-to-list 'load-path "~/.emacs.d/dockerfile-mode/")
+;; (require 'dockerfile-mode)
+;; (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 
 (use-package darcula-theme :ensure t :config
   ;; your preferred main font face here
-  (set-frame-font "Inconsolata-12"))
+  ;; (set-frame-font "Inconsolata-12")
+  )
 
 (use-package projectile :ensure t)
 
@@ -40,24 +42,6 @@
 
 (use-package hindent :ensure t)
 (add-hook 'haskell-mode-hook #'hindent-mode)
-
-;; Tuareg mode
-(load "/home/svp/.opam/system/share/emacs/site-lisp/tuareg-site-file.el")
-
-;; Merlin - tuareg
-(let ((opam-share (ignore-errors (car (process-lines "opam" "config" "var" "share")))))
-      (when (and opam-share (file-directory-p opam-share))
-       ;; Register Merlin
-       (add-to-list 'load-path (expand-file-name "emacs/site-lisp" opam-share))
-       (autoload 'merlin-mode "merlin" nil t nil)
-       ;; Automatically start it in OCaml buffers
-       (add-hook 'tuareg-mode-hook 'merlin-mode t)
-       (add-hook 'caml-mode-hook 'merlin-mode t)
-       ;; Use opam switch to lookup ocamlmerlin binary
-       (setq merlin-command 'opam)))
-
-;; caml-mode
-(add-to-list 'load-path "/home/svp/.opam/system/share/emacs/site-lisp/")
 
 (setq calendar-week-start-day 1)
 
@@ -122,11 +106,9 @@
 (require 'neotree)
 (global-set-key [f8] 'neotree-toggle)
 
-;; TODO
-(add-to-list 'load-path "~/.emacs.d/all-the-icons/")
+(use-package all-the-icons :ensure t)
 (require 'all-the-icons)
-;; (use-package all-the-icons :ensure t)
-(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+(setq neo-theme (if (display-graphic-p) 'icons))
 
 ;; Auto refresh all the buffers
 ;; Adapted from http://stackoverflow.com/questions/1480572/how-to-have-emacs-auto-refresh-all-buffers-when-files-have-changed-on-disk
