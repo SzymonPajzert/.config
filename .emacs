@@ -32,13 +32,8 @@
 
 (use-package projectile :ensure t)
 
-(use-package haskell-mode :ensure t)
-
-;; (use-package auctex :ensure t)
-
-(require 'haskell-interactive-mode)
-(require 'haskell-process)
-(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+(use-package intero :ensure t)
+(add-hook 'haskell-mode-hook 'intero-mode)
 
 (use-package hindent :ensure t)
 (add-hook 'haskell-mode-hook #'hindent-mode)
@@ -74,10 +69,19 @@
 '((sequence "TODO(t)" "FREE(f)" "|" "DONE(d)" "AWAITING(a)" "FAILED(l)" "CANCELLED(c)" "SOMEDAY(s)")))
 
 (setq org-agenda-files
- '("~/Documents/org" "~/Documents/org/studia"))
+	  '("~/Documents/org" "~/Documents/org/studia"))
+
+(setq org-refile-files
+	  '("~/Documents/org/active.org"))
+
+;; TODO assert that org-refile-files are subset of org-agenda-files
 
 (setq org-log-done 'time)
 (setq org-deadline-warning-days 28)
+
+;; org-mode refile
+(setq org-refile-targets '((org-refile-files :maxlevel . 3)))
+(setq org-refile-use-outline-path t)
 
 ;; org-mode capture
 
@@ -89,7 +93,31 @@
       '(("t" "Todo" entry (file+headline 'org-default-todos-file "Tasks")
 		 "* TODO %?\n  %i\n  %a")
         ("j" "Journal" entry (file+datetree 'org-default-notes-file)
-		 "* %?\nEntered on %U\n  %i\n  %a")))
+		 "* %?\nEntered on %U\n  %i\n  %a")
+		("r" "Raport" entry (file+datetree 'org-default-notest-file)
+		 "* Daily raport %U
+** Aktywność fizyczna
+** Jedzenie
+*** Śniadanie %?
+*** Obiad
+*** Kolacja 
+** Brzuszek
+** Włosy
+*** Pielęgnacja
+*** Stan
+\nEntered on %U\n  %i\n  %a")
+		("w" "Wspinaczka" entry (file+datetree 'org-default-notest-file)
+		 "* Wspinaczka notatki
+** Poziom energetyczny 
+%?
+** Zrobione trasy
+** Urazy
+** Pielęgnacja
+** Wnioski
+\nEntered on %U\n  %i\n  %a"
+		 )
+
+))
 
 
 ;; Org habits
@@ -140,7 +168,7 @@
  '(neo-window-fixed-size nil)
  '(package-selected-packages
    (quote
-	(all-the-icons org request hindent auctex use-package projectile neotree haskell-mode ensime darcula-theme)))
+	(intero flycheck web-mode all-the-icons org request hindent auctex use-package projectile neotree haskell-mode ensime darcula-theme)))
  '(warning-minimum-level :debug))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -150,3 +178,16 @@
  )
 
 
+
+
+;;    Web development
+(use-package web-mode :ensure t)
+(require 'web-mode)
+
+;; Python lint TODO
+;; (use-package flycheck
+;;   :ensure t
+;;   :init (global-flycheck-mode))
+
+(provide '.emacs)
+;;; .emacs ends here

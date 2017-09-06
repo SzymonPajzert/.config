@@ -26,4 +26,3 @@ for path in ${sub_paths[@]}; do
 	echo "!"$path >> ${gitignore}
 done
 
-git add ${rel_dir}

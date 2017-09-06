@@ -1,0 +1,14 @@
+export PATH=$PATH:"$HOME/.cabal/bin"
+export PATH=$PATH:"$HOME/.local/bin"
+
+export PATH=$PATH:"/usr/lib/jvm/jdk1.8.0_144"
+
+export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_144/bin
+
+export LEDGER_FILE="$HOME/Documents/org/hledger.journal"
+
+tochar() {
+	printf "\x$(printf %x $1)\n"
+}
+
+

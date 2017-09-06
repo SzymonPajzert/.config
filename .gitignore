@@ -16,3 +16,5 @@
 !.emacs.d/swipl/prolog.el
 !.emacs.d/swipl
 !.emacs.d
+!.bashrc
+!.bash_config
