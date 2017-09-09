@@ -18,3 +18,4 @@
 !.emacs.d
 !.bashrc
 !.bash_config
+!.tmux.conf
