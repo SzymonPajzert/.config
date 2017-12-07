@@ -169,6 +169,9 @@
  '(package-selected-packages
    (quote
 	(intero flycheck web-mode all-the-icons org request hindent auctex use-package projectile neotree haskell-mode ensime darcula-theme)))
+ '(safe-local-variable-values
+   (quote
+	((intero-targets "sqlirell:lib" "sqlirell:exe:sqlirell-test-parse" "sqlirell:test:EvalTest"))))
  '(warning-minimum-level :debug))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
