@@ -9,4 +9,5 @@ tochar() {
 	printf "\x$(printf %x $1)\n"
 }
 
-
+keychain id_ed25519 id_ed25519
+. ~/.keychain/`uname -n`-sh

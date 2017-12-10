@@ -19,3 +19,5 @@
 !.bashrc
 !.bash_config
 !.tmux.conf
+!.ssh/svp-destroyer-ed.pub
+!.ssh
