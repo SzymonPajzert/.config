@@ -120,3 +120,6 @@ if [ -f ~/.bash_config ]; then
     . ~/.bash_config
 fi
 
+
+# added by travis gem
+[ -f /home/svp/.travis/travis.sh ] && source /home/svp/.travis/travis.sh

@@ -22,3 +22,6 @@
 !.ssh/svp-destroyer-ed.pub
 !.ssh
 !.bash_aliases
+!.tmux/plugins/tpm
+!.tmux/plugins
+!.tmux
