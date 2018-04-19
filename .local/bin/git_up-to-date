@@ -1,0 +1,25 @@
+#!/bin/bash
+
+DIR=$1
+
+if [[ -d $DIR ]]; then
+	cd $DIR
+	echo -n "${DIR}: "
+
+	output=$(git fetch --all)
+	
+	if [[ $? ]]; then
+		lines=$(echo $output | grep -- "->")
+		if [[ -z $lines ]]; then
+			echo "UP TO DATE"
+		else
+			echo "UPDATED"
+			echo $lines
+		fi
+	else
+		echo "ERROR"
+		echo $output
+	fi
+	
+	cd - >/dev/null
+fi

@@ -1,0 +1,41 @@
+#!/usr/bin/python3
+
+from sys import argv
+from subprocess import call
+
+actions = dict()
+
+def get_current():
+	return 0
+
+def enter_guake(directory, command=None):
+        result_command = ['guake', '-n', directory]
+        
+        if command:
+                result_command += ['-e', command]
+
+        return result_command
+
+
+actions['myszki'] = [enter_guake('./Programming/nthakes/', command='. ./venv/bin/activate')] * 2
+actions['sqlirell'] = [enter_guake('./Programming/sqlirell/')] * 2
+actions['siktacka'] = [enter_guake('./Programming/siktacka/cmake-build-debug', command='ls')] * 2 
+
+def usage():
+        print('Available projects: ')
+        for project in actions.keys():
+                print('  {}'.format(project))
+
+        exit(1)
+
+if len(argv) == 1:
+        usage()
+
+project = argv[1]
+print('Calling with arg {}'.format(project))
+
+for command in actions[project]:
+	call(command)
+call(['guake', '-s', str(get_current())])
+call(['exit'])
+	

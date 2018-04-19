@@ -13,6 +13,8 @@
     l = log --abbrev-commit --pretty=oneline
     tree = log --graph --all --decorate --pretty=oneline
     review = push origin HEAD:refs/for/master
+    unignore = !git_unignore
+    up-to-date = !git_up-to-date
 [branch]
     autosetupmerge = true
 [color]

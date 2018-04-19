@@ -25,3 +25,9 @@
 !.tmux/plugins/tpm
 !.tmux/plugins
 !.tmux
+!.local/bin/git_up-to-date
+!.local/bin
+!.local
+!.local/bin/enter_project
+!.local/bin
+!.local
