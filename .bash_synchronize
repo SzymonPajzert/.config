@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo "Synchronizing git"
+
+for git_directory in ~ Programming/barbit Programming/lab; do
+	git up-to-date $git_directory
+done

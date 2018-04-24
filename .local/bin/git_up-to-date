@@ -6,10 +6,10 @@ if [[ -d $DIR ]]; then
 	cd $DIR
 	echo -n "${DIR}: "
 
-	output=$(git fetch --all)
+	fetch=$(git fetch --all)
 	
 	if [[ $? ]]; then
-		lines=$(echo $output | grep -- "->")
+		lines=$(echo $fetch | grep -- "->")
 		if [[ -z $lines ]]; then
 			echo "UP TO DATE"
 		else
@@ -18,7 +18,22 @@ if [[ -d $DIR ]]; then
 		fi
 	else
 		echo "ERROR"
-		echo $output
+		echo $fetch
+	fi
+
+	pull_all=$(git push --all origin)
+
+	if [[ $? ]]; then
+		lines=$(echo $fetch | grep -- "->")
+		if [[ -z $lines ]]; then
+			echo "NOTHING TO UPDATE"
+		else
+			echo "UPDATED"
+			echo $lines
+		fi
+	else
+		echo "ERROR"
+		echo $pull_all
 	fi
 	
 	cd - >/dev/null

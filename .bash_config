@@ -18,7 +18,9 @@ for key in svp-destroyer-ed id_ed25519 id_rsa; do
 done
 . ~/.keychain/`uname -n`-sh
 
-echo "Synchronizing git"
-for git_directory in . Programming/barbit Programming/lab; do
-	git up-to-date $git_directory
-done
+if [[ -n "$TMUX" ]]; then
+	echo "Inside TMUX, without synchronizing git"
+else
+	bash ~/.bash_synchronize
+fi
+
