@@ -20,7 +20,9 @@ done
 
 if [[ -n "$TMUX" ]]; then
 	echo "Inside TMUX, without synchronizing git"
+elif tmux info &> /dev/null; then
+	echo "TMUX already running"
 else
-	bash ~/.bash_synchronize
+	synchronize_git_tmux
 fi
 
