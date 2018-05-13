@@ -1,0 +1,13 @@
+#!/bin/bash
+
+for git_repository in $(find ~/Programming -name .git); do
+	git_repository=${git_repository%/*}
+	echo -n "Checking in: $git_repository"
+	cd ${git_repository}
+        
+  	if git remote get-url origin &>/dev/null ; then
+		echo "  OK"
+	else
+		echo "  No origin"
+	fi	
+done

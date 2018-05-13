@@ -32,3 +32,6 @@
 !.local/bin
 !.local
 !.bash_synchronize
+!.local/bin/discover_no_origin
+!.local/bin
+!.local
