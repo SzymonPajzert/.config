@@ -21,7 +21,8 @@ if [[ -d $DIR ]]; then
 		echo $fetch
 	fi
 
-	pull_all=$(git push --all origin)
+	pull_all=$(git pull --all)
+	push_all=$(git push --all origin)
 
 	if [[ $? ]]; then
 		lines=$(echo $fetch | grep -- "->")
@@ -33,7 +34,7 @@ if [[ -d $DIR ]]; then
 		fi
 	else
 		echo "ERROR"
-		echo $pull_all
+		echo $push_all
 	fi
 	
 	cd - >/dev/null

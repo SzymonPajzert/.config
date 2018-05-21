@@ -35,3 +35,6 @@
 !.local/bin/discover_no_origin
 !.local/bin
 !.local
+!.local/bin/synchronize_git_tmux
+!.local/bin
+!.local
