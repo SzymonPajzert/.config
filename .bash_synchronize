@@ -2,6 +2,6 @@
 
 echo "Synchronizing git"
 
-for git_directory in ~ Programming/barbit Programming/lab; do
+for git_directory in ~ Programming/barbit Programming/lab Documents/Documents Programming/blog; do
 	git up-to-date $git_directory
 done
