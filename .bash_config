@@ -2,7 +2,7 @@
 
 export PATH=$PATH:"$HOME/.cabal/bin"
 export PATH=$PATH:"$HOME/.local/bin"
-
+export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:"/usr/lib/jvm/jdk1.8.0_144"
 
 export LEDGER_FILE="$HOME/Documents/org/hledger.journal"
