@@ -38,3 +38,8 @@
 !.local/bin/synchronize_git_tmux
 !.local/bin
 !.local
+!.config
+!.config/Code
+!.config/Code/User
+!.config/Code/User/snippets
+!.config/Code/User/snippets/python.json
